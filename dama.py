@@ -10,7 +10,11 @@ class Piece:
         self.king = True
 
     def __repr__(self):
+<<<<<<< HEAD
         # Daşı mətndə təqdim etmək üçün rəngi böyük hərflə qaytarır, əgər kingdirsə
+=======
+        # Daşı mətndə təqdim etmək üçün rengi böyük hərflə qaytarır, əgər kingdirsə
+>>>>>>> e6a8e0542e4ef76839e2352bc57dd7086374d926
         return f"{self.color.upper() if self.king else self.color}"
 
 # Oyunun lövhəsini təmsil edən sinif
@@ -33,12 +37,18 @@ class Board:
         return board
 
     def print_board(self):
+<<<<<<< HEAD
         # Sütun nömrələrini çap edir
         print("  0 1 2 3 4 5 6 7")
         for idx, row in enumerate(self.board):
             # Hər sıranın əvvəlində sıra nömrəsini əlavə edir
             print(idx, " ".join([str(piece) if piece else "." for piece in row]))
         print()
+=======
+        # Lövhəni ekranda göstərir, boş yerləri nöqtələrlə ifadə edir
+        for row in self.board:
+            print(" ".join([str(piece) if piece else "." for piece in row]))
+>>>>>>> e6a8e0542e4ef76839e2352bc57dd7086374d926
 
     def move_piece(self, start, end):
         # Daşı başlanğıc nöqtədən son nöqtəyə hərəkət etdirir
@@ -46,12 +56,15 @@ class Board:
         self.board[end[0]][end[1]] = piece
         self.board[start[0]][start[1]] = None
 
+<<<<<<< HEAD
         # Əgər vurma əməliyyatı baş veribsə, vurulan rəqib daşını lövhədən çıxarır
         if abs(start[0] - end[0]) == 2:  # Vurma əməliyyatı 2 sıranı keçirsə, rəqib daşı çıxarır
             middle_row = (start[0] + end[0]) // 2
             middle_col = (start[1] + end[1]) // 2
             self.board[middle_row][middle_col] = None
 
+=======
+>>>>>>> e6a8e0542e4ef76839e2352bc57dd7086374d926
         # Əks tərəfə çatan daşı "king" statusuna keçirir
         if end[0] == 0 and piece.color == 'r':
             piece.make_king()
@@ -59,7 +72,11 @@ class Board:
             piece.make_king()
 
     def get_valid_moves(self, pos):
+<<<<<<< HEAD
         # Seçilmiş daş üçün mümkün hərəkətləri və vurma əməliyyatlarını qaytarır
+=======
+        # Seçilmiş daş üçün mümkün hərəkətləri qaytarır
+>>>>>>> e6a8e0542e4ef76839e2352bc57dd7086374d926
         row, col = pos
         piece = self.board[row][col]
         if not piece:
@@ -71,6 +88,7 @@ class Board:
             directions += [(-d[0], -d[1]) for d in directions]
 
         valid_moves = []
+<<<<<<< HEAD
         for dr, dc in directions:
             r, c = row + dr, col + dc
             # Əgər bir addımda boşdursa, sadə hərəkət icazəlidir
@@ -83,6 +101,13 @@ class Board:
                     if self.board[r + dr][c + dc] is None:
                         valid_moves.append((r + dr, c + dc))
 
+=======
+        # Mümkün hərəkətləri yoxlayır və boş yerləri qaytarır
+        for dr, dc in directions:
+            r, c = row + dr, col + dc
+            if 0 <= r < 8 and 0 <= c < 8 and self.board[r][c] is None:
+                valid_moves.append((r, c))
+>>>>>>> e6a8e0542e4ef76839e2352bc57dd7086374d926
         return valid_moves
 
 # Oyun idarəetmə sinifi
@@ -91,8 +116,11 @@ class DamaGame:
         # Lövhəni və ilk oyunçunun növbəsini təyin edir
         self.board = Board()
         self.turn = "r"
+<<<<<<< HEAD
         
         
+=======
+>>>>>>> e6a8e0542e4ef76839e2352bc57dd7086374d926
 
     def play_turn(self, start, end):
         # Seçilmiş başlanğıc və son nöqtəyə əsasən hərəkəti icra edir
@@ -123,7 +151,10 @@ class DamaGame:
             return "Qırmızı oyunçu qalib gəldi!"
         return None
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e6a8e0542e4ef76839e2352bc57dd7086374d926
 # Konsol üzərində sadə oyun
 game = DamaGame()
 game.board.print_board()
